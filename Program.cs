@@ -17,6 +17,7 @@ namespace Lab_work_3
             while (true)
             {
                 Console.WriteLine("1 — Додати книгу");
+                Console.WriteLine("1.1 - Додати книгу (Більш коротку)");
                 Console.WriteLine("2 — Переглянути книги");
                 Console.WriteLine("3 - Знайти книгу");
                 Console.WriteLine("4 — Видалити книгу");
@@ -32,7 +33,6 @@ namespace Lab_work_3
                     {
                         case 1:
                             MyBooks book = new MyBooks("Назва", "Автор", "Опис", 0, "", 0, 0, false);
-                            MyBooks book1 = new MyBooks("Назва книги", "Автор", 0);
                             bool inputIsValidTitle = true;
 
                             while (inputIsValidTitle)
@@ -40,7 +40,7 @@ namespace Lab_work_3
                                 try
                                 {
                                     Console.Write("\nНазва книжки: ");
-                                    book1.title = Console.ReadLine();
+                                    book.title = Console.ReadLine();
                                     inputIsValidTitle = false; // Помилка відсутня;
                                 }
                                 catch (ArgumentException ex)
@@ -57,7 +57,7 @@ namespace Lab_work_3
                                 try
                                 {
                                     Console.Write("Автор: ");
-                                    book1.author = Console.ReadLine();
+                                    book.author = Console.ReadLine();
                                     inputIsValidAuthor = false;
                                 }
                                 catch (ArgumentException ex)
@@ -125,12 +125,13 @@ namespace Lab_work_3
                                 try
                                 {
                                     Console.Write("Рік видання: ");
-                                    book1.yearOfPublication = short.Parse(Console.ReadLine());
+                                    book.yearOfPublication = short.Parse(Console.ReadLine());
                                     inputIsValidPublication = false;
                                 }
                                 catch (FormatException ex)
                                 {
                                     Console.WriteLine(ex.Message);
+                                    inputIsValidPublication = true;
                                 }
                             }
 
@@ -170,7 +171,63 @@ namespace Lab_work_3
                                     inputIsValidGenre = true;
                                 }
                             }
-                            library.AddBook(new MyBooks(book1.title, book1.author, book.description, book.pages, book.language, book1.yearOfPublication, book.genre, book.isRead));
+                            library.AddBook(new MyBooks(book.title, book.author, book.description, book.pages, book.language, book.yearOfPublication, book.genre, book.isRead));
+                            break;
+                        case -1:
+                            MyBooks book1 = new MyBooks("Назва книги", "Автор", 0);
+
+                            bool inputIsValidTitle1 = true;
+                            while (inputIsValidTitle1)
+                            {
+                                try
+                                {
+                                    Console.Write("\nНазва книжки - 1: ");
+                                    book1.title = Console.ReadLine();
+                                    inputIsValidTitle1 = false; // Помилка відсутня;
+                                }
+                                catch (ArgumentException ex)
+                                {
+                                    Console.WriteLine(ex.Message);
+                                    inputIsValidTitle1 = true;
+                                }
+                            }
+
+                            bool inputIsValidAuthor1 = true;
+
+
+                            while (inputIsValidAuthor1)
+                            {
+                                try
+                                {
+                                    Console.Write("Автор: ");
+                                    book1.author = Console.ReadLine();
+                                    inputIsValidAuthor1 = false;
+                                }
+                                catch (ArgumentException ex)
+                                {
+                                    Console.WriteLine(ex.Message);
+                                    inputIsValidAuthor1 = true;
+                                }
+                            }
+
+                            bool inputIsValidPublication1 = true;
+
+                            while (inputIsValidPublication1)
+                            {
+                                try
+                                {
+                                    Console.Write("Рік видання: ");
+                                    book1.yearOfPublication = short.Parse(Console.ReadLine());
+                                    inputIsValidPublication1 = false;
+                                }
+                                catch (FormatException ex)
+                                {
+                                    Console.WriteLine(ex.Message);
+                                    inputIsValidPublication1 = true;
+                                }
+                            }
+
+                            library.AddBook(new MyBooks(book1.title, book1.author, book1.yearOfPublication));
                             break;
                         case 2:
                             library.ViewBooks();
