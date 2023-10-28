@@ -16,15 +16,16 @@ namespace Lab_work_3
 
             while (true)
             {
-                Console.WriteLine("1 — Додати книгу");
-                Console.WriteLine("1.1 - Додати книгу (Більш коротку)");
-                Console.WriteLine("2 — Переглянути книги");
-                Console.WriteLine("3 - Знайти книгу");
-                Console.WriteLine("4 — Видалити книгу");
-                Console.WriteLine("5 — Додати прочитану книгу: ");
-                Console.WriteLine("6 — Список прочитаних книжок: ");
-                Console.WriteLine("7 — Список непрочитаних книжок: ");
-                Console.WriteLine("0 — Вийти з програми");
+                Console.WriteLine(" 1 — Додати книгу");
+                Console.WriteLine("  -1 - Додати книгу (Більш коротку)");
+                Console.WriteLine("  -2 - Додати книгу (З дефолтними значеннями)");
+                Console.WriteLine(" 2 — Переглянути книги");
+                Console.WriteLine(" 3 - Знайти книгу");
+                Console.WriteLine(" 4 — Видалити книгу");
+                Console.WriteLine(" 5 — Додати прочитану книгу: ");
+                Console.WriteLine(" 6 — Список прочитаних книжок: ");
+                Console.WriteLine(" 7 — Список непрочитаних книжок: ");
+                Console.WriteLine(" 0 — Вийти з програми");
 
                 Console.Write("\nВиберіть дію: ");
                 if (int.TryParse(Console.ReadLine(), out int choice))
@@ -181,7 +182,7 @@ namespace Lab_work_3
                             {
                                 try
                                 {
-                                    Console.Write("\nНазва книжки - 1: ");
+                                    Console.Write("\nНазва книжки: ");
                                     book1.title = Console.ReadLine();
                                     inputIsValidTitle1 = false; // Помилка відсутня;
                                 }
@@ -227,7 +228,12 @@ namespace Lab_work_3
                                 }
                             }
 
-                            library.AddBook(new MyBooks(book1.title, book1.author, book1.yearOfPublication));
+                            library.AddBook(new MyBooks(book1.title, book1.author, "Опис", 0, "Мова", book1.yearOfPublication, Genre.Other, false));
+                            break;
+                        case -2:
+                            MyBooks myBooks = new MyBooks();
+                            myBooks.description = "Використання пустого конструктору";
+                            library.AddBook(new MyBooks("Назва книги", "Автор...", myBooks.description, 0, "Українська", 0, Genre.Other, false));
                             break;
                         case 2:
                             library.ViewBooks();

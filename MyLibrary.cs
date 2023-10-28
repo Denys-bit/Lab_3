@@ -1,7 +1,5 @@
 ﻿using System;
 
-using System.Text;
-
 namespace Lab_work_3
 {
     internal class MyLibrary
