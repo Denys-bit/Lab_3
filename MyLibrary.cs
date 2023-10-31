@@ -141,52 +141,6 @@ namespace Lab_work_3
             }
         }
 
-        public int[] FindBookCharacteristics(short? characteristicsPublication, string characteristicsLanguage)
-        {
-            int[] bookIndex = new int[bookCount];
-            int matchingCount = 0;
-
-            if (bookCount == 0)
-            {
-                Console.WriteLine("Бібліотека порожня.");
-                return new int[0];  // Повернути пустий масив, оскільки немає збігів.
-            }
-
-            for (int i = 0; i < bookCount; i++)
-            {
-                if (books[i].yearOfPublication == characteristicsPublication || books[i].language == characteristicsLanguage)
-                {
-                    bookIndex[matchingCount] = i;
-                    matchingCount++;
-                }
-            }
-
-            if (matchingCount == 0)
-            {
-                Console.WriteLine("Не знайдено.");
-                return new int[0];  // Повернути пустий масив, оскільки немає збігів.
-            }
-
-            // Вивести всі збіги після завершення пошуку.
-            for (int i = 0; i < matchingCount; i++)
-            {
-                int index = bookIndex[i];
-                Console.WriteLine($"Знайдено книгу: #{index + 1}");
-                Console.WriteLine($"Назва: {books[index].title}");
-                Console.WriteLine($"Автор: {books[index].author}");
-                Console.WriteLine($"Опис: {books[index].description}");
-                Console.WriteLine($"Кількість сторінок: {books[index].pages}");
-                Console.WriteLine($"Мова: {books[index].language}");
-                Console.WriteLine($"Рік видання: {books[index].yearOfPublication}");
-                Console.WriteLine($"Жанр: {books[index].genre}");
-                Console.WriteLine($"Тестова автовластивість: {books[index].autoProperties}");
-                Console.WriteLine($"Обчислювальна властивість: {books[index].TitleAndAuthor}");
-                Console.WriteLine();
-            }
-
-            return bookIndex;
-        }
-
         public void RemoveBook(int index)
         {
             if (index >= 0 && index < bookCount)

@@ -20,11 +20,10 @@ namespace Lab_work_3
                 Console.WriteLine("  -1 - Додати книгу (Більш коротку)");
                 Console.WriteLine("  -2 - Додати книгу (З дефолтними значеннями)");
                 Console.WriteLine(" 2 — Переглянути книги");
-                Console.WriteLine(" 3 - Знайти книгу");
-                Console.WriteLine(" 4 — Видалити книгу");
-                Console.WriteLine(" 5 — Додати прочитану книгу: ");
-                Console.WriteLine(" 6 — Список прочитаних книжок: ");
-                Console.WriteLine(" 7 — Список непрочитаних книжок: ");
+                Console.WriteLine(" 3 — Видалити книгу");
+                Console.WriteLine(" 4 — Додати прочитану книгу: ");
+                Console.WriteLine(" 5 — Список прочитаних книжок: ");
+                Console.WriteLine(" 6 — Список непрочитаних книжок: ");
                 Console.WriteLine(" 0 — Вийти з програми");
 
                 Console.Write("\nВиберіть дію: ");
@@ -239,84 +238,6 @@ namespace Lab_work_3
                             library.ViewBooks();
                             break;
                         case 3:
-                            MyBooks books = new MyBooks("Назва книги", "Автор", "Опис", 0, "Мова", 0, Genre.Other, false);
-                            bool test = true;
-                            if (library.bookCount == 0)
-                            {
-                                Console.WriteLine("Бібліотека порожня.");
-                                break;
-                            }
-
-                            while (test)
-                            {
-
-                                Console.WriteLine("1 - Знайти за характеристикою \"Рік видання\"");
-                                Console.WriteLine("2 - Знайти за характеристикою \"Мова\"");
-                                Console.WriteLine("0 - Повернутися до основного меню.\n");
-
-                                Console.Write("Виберіть характеристику, за якою бажаєте здійснити пошук: \n");
-                                if (int.TryParse(Console.ReadLine(), out int choiceCharacteristics))
-                                {
-                                    switch (choiceCharacteristics)
-                                    {
-                                        case 1:
-                                            bool res = true;
-                                            while (res)
-                                            {
-                                                try
-                                                {
-                                                    Console.Write("Для знаходження, введіть рік видання: ");
-
-                                                    library.FindBookCharacteristics(books.yearOfPublication = short.Parse(Console.ReadLine()), null);
-
-                                                    res = false;
-
-                                                }
-                                                catch (FormatException ex)
-                                                {
-                                                    Console.WriteLine(ex.Message);
-                                                    res = true;
-                                                }
-
-                                            }
-                                            break;
-                                        case 2:
-                                            bool resd = true;
-
-                                            while (resd)
-                                            {
-                                                try
-                                                {
-                                                    Console.Write("Для знаходження, введіть мову книги: ");
-                                                    library.FindBookCharacteristics(null, books.language = Console.ReadLine());
-
-                                                    resd = false;
-
-                                                }
-                                                catch (ArgumentException ex)
-                                                {
-                                                    Console.WriteLine(ex.Message);
-                                                    resd = true;
-                                                }
-
-                                            }
-                                            break;
-                                        case 0:
-                                            test = false;
-                                            break;
-                                        default:
-                                            Console.WriteLine("Такого пункту меню не існує.");
-                                            break;
-                                    }
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Невірний формат.");
-                                }
-                                Console.WriteLine();
-                            }
-                            break;
-                        case 4:
                             if (library.bookCount >= 1)
                             {
                                 Console.Write("Введіть номер книги для видалення: ");
@@ -334,7 +255,7 @@ namespace Lab_work_3
                                 Console.WriteLine("\nВидалення неможливо! Додайте хоч 1 книжку.");
                             }
                             break;
-                        case 5:
+                        case 4:
                             if (library.bookCount >= 1)
                             {
                                 library.ViewTitleBook();
@@ -361,10 +282,10 @@ namespace Lab_work_3
                                 Console.WriteLine("\nНеможливо додати прочитану книжку, якої не існує!");
                             }
                             break;
-                        case 6:
+                        case 5:
                             library.ViewReadBooks();
                             break;
-                        case 7:
+                        case 6:
                             library.ViewUnreadBooks();
                             break;
                         case 0:
