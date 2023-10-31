@@ -141,9 +141,9 @@ namespace Lab_work_3
             }
         }
 
-        public int[] FindBookCharacteristics(short? characteristics, string v)
+        public int[] FindBookCharacteristics(short? characteristicsPublication, string characteristicsLanguage)
         {
-            int[] matchingBookIndices = new int[bookCount];
+            int[] bookIndex = new int[bookCount];
             int matchingCount = 0;
 
             if (bookCount == 0)
@@ -154,9 +154,9 @@ namespace Lab_work_3
 
             for (int i = 0; i < bookCount; i++)
             {
-                if (books[i].yearOfPublication == characteristics || books[i].language == v)
+                if (books[i].yearOfPublication == characteristicsPublication || books[i].language == characteristicsLanguage)
                 {
-                    matchingBookIndices[matchingCount] = i;
+                    bookIndex[matchingCount] = i;
                     matchingCount++;
                 }
             }
@@ -170,7 +170,7 @@ namespace Lab_work_3
             // Вивести всі збіги після завершення пошуку.
             for (int i = 0; i < matchingCount; i++)
             {
-                int index = matchingBookIndices[i];
+                int index = bookIndex[i];
                 Console.WriteLine($"Знайдено книгу: #{index + 1}");
                 Console.WriteLine($"Назва: {books[index].title}");
                 Console.WriteLine($"Автор: {books[index].author}");
@@ -184,7 +184,7 @@ namespace Lab_work_3
                 Console.WriteLine();
             }
 
-            return matchingBookIndices;
+            return bookIndex;
         }
 
         public void RemoveBook(int index)
